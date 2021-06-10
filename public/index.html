@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>IZ*ONE</title>
+</head>
+<body>
+    <h1>Welcome to IZ*ONE!</h1>
+    <a href="/about.html">About</a>
+    <button id="button">Change image</button>
+    <img id="img" src="https://www.allkpop.com/upload/2021/03/content/102213/1615432396-20210311-izone.jpg" alt="IZ*ONE">
+    <script>
+        const img = document.querySelector('#img')
+        const button = document.querySelector('#button')
+        let toggle = true
+        function changeimg() {
+            if(toggle) {
+                img.src = 'https://mb.com.ph/wp-content/uploads/2021/02/IZONE3.jpeg'
+            } 
+            else {
+                img.src = 'https://www.allkpop.com/upload/2021/03/content/102213/1615432396-20210311-izone.jpg'
+            } 
+            return toggle = !toggle
+        } 
+
+        button.addEventListener('click', () => {
+            changeimg()
+        })
+
+        // var toggle = false;
+        // function chngimg() {
+        //     if (toggle === true) {
+        //         document.getElementById('img').src  = 'https://mb.com.ph/wp-content/uploads/2021/02/IZONE3.jpeg';
+        //     } else {
+        //     document.getElementById('img').src = 'https://www.allkpop.com/upload/2021/03/content/102213/1615432396-20210311-izone.jpg';
+        //     }
+        //     toggle = !toggle; 
+        // }
+        // button.addEventListener('click', () => {
+        //     chngimg()
+        // })
+        
+    </script>
+</body>
+</html>

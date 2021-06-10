@@ -1,0 +1,32 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #333;
+    --color: #fff;
+}
+
+body {
+    padding: 4em;
+    background-color: var(--bg-color);
+    color: var(--color);
+}
+
+* {
+    padding: .5rem;
+}
+
+a {
+    text-decoration: none;
+    padding: 1rem;
+    background-color: none;
+    border: 1px solid green;
+    color: white;
+}
+
+img {
+    height: 50%;
+}
