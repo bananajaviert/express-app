@@ -17,5 +17,13 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "uuid": "^8.3.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bananajaviert/express-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bananajaviert/express-app/issues"
+  },
+  "homepage": "https://github.com/bananajaviert/express-app#readme"
 }

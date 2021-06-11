@@ -1,26 +1,99 @@
 import express from 'express'
-const router = express.Router()
+import * as uuid from 'uuid'
 
 import members from '../../members.js'
+
+const router = express.Router()
 
 //Get all members
 router.get('/', (req,res) => {
     res.json(members)
-    console.log('Stan IZ*ONE')
 })
 
 // Get single member
 router.get('/:ranking', (req, res) => {
     // To check if ranking exists
-    const found = members.some(member => member.ranking === parseInt(req.params.ranking)) 
+    const found = members.some(member => {
+        return member.ranking === parseInt(req.params.ranking)
+    }) 
 
     if(found) {
-        res.json(members.filter(member => {
-            return member.ranking === parseInt(req.params.ranking)
+        res.status(200).json(members.filter(member => {
+            return  member.ranking === parseInt(req.params.ranking)
         }))
-    } else {
-        res.status(404).json({ msg: `Member ranking ${req.params.ranking} cannot be found` })
+    }
+    if(!found){
+        res.status(404).json(
+            { msg: `Member with ranking ${req.params.ranking} does not exists` }
+        )
     }
 })
 
-export default router
+// Create member
+router.post('/', (req, res) => {
+    const newMember = {
+        name: req.body.name,
+        age: req.body.Age,
+        ranking: 13
+    }
+
+    if(!newMember.name || !newMember.age) {
+        return res.status(400).json({ message: `Please include a name and age` })
+    }
+
+    members.push(newMember)
+    res.json(members)
+})
+
+// Update member
+router.put('/:ranking', (req, res) => {
+    // To check if ranking exists
+    const found = members.some(member => {
+        return member.ranking === parseInt(req.params.ranking)
+    }) 
+
+    if(found) {
+        const updateMember = req.body
+
+        members.forEach(member => {
+            if(member.ranking === parseInt(req.params.ranking)) {
+                member.name = updateMember.name ? updateMember.name : member.name
+                member.age = updateMember.age ? updateMember.age : member.age
+
+                res.json({ msg: `Member updated`, members})
+            }
+        })
+    }
+
+    if(!found){
+        return res.status(404).json(
+            { msg: `Member with ranking ${req.params.ranking} does not exists` }
+        )
+    }
+})
+
+
+// Delete member
+router.delete('/:ranking', (req, res) => {
+    // To check if ranking exists
+    const found = members.some(member => {
+        return member.ranking === parseInt(req.params.ranking)
+    }) 
+
+    if(found) {
+        res.json({ 
+            msg: 'Member deleted',
+            members: members.filter(member => {
+                // Return all members except deleted
+                return  member.ranking !== parseInt(req.params.ranking)
+            })
+        })
+    }
+    if(!found){
+        res.status(404).json(
+            { msg: `Member with ranking ${req.params.ranking} does not exists` }
+        )
+    }
+})
+
+export { router }
