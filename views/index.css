@@ -1,0 +1,11 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.list-item {
+    border: 1px solid black;
+    padding: .5rem;
+    list-style-type: none;
+}

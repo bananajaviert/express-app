@@ -61,4 +61,4 @@ const members = [
     }
 ]
 
-export default members
+export { members }

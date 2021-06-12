@@ -1,0 +1,21 @@
+{{!-- <link rel="stylesheet" href="index.css"> --}}
+<h1 class="text-center mb-3">{{title}}</h1>
+<form action="/groups/itzy" method="POST">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="nickname">Stage Name</label>
+        <input type="text" name="nickname" class="form-control">
+    </div>
+    <input type="submit" value="Add Member" class="btn btn-primary btn-block m-3">
+</form>
+<div>
+    <h4>Members</h4>
+    <ul class="list-group">
+        {{#each members}}
+        <li class="list-group-item">Full Name: {{this.name}} <br>Stage Name: {{this.nickname}} <br><br></li>
+        {{/each}}
+    </ul>
+</div>
